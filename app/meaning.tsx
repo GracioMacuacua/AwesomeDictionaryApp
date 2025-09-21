@@ -1,0 +1,138 @@
+import React, {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Share,
+  Alert,
+  ScrollView,
+} from "react-native";
+import { useLocalSearchParams } from "expo-router";
+import { Container } from "@components/Container";
+import { _useTheme } from "@context/ThemeContext";
+import { useFocusEffect } from "expo-router";
+import { TopBar } from "@components/TopBar";
+import { Screen } from "@components/Screen";
+import { Icon } from "@components/Icon";
+import * as Speech from "expo-speech";
+import axios from "axios";
+import { useCallback, useEffect } from "react";
+
+const Meaning = () => {
+  let { id, word, meaning, favorited } = useLocalSearchParams();
+  const { theme } = _useTheme();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        Speech.stop();
+      };
+    }, [])
+  );
+
+  const handleFavorite = async () => {
+    axios
+      .patch(process.env.EXPO_PUBLIC_API_HOST + `/data/${id}`, {
+        favorited: favorited == "true" ? false : true,
+      })
+      .then(() => {
+        favorited = favorited == "true" ? "false" : "true";
+        Alert.alert("Sucesso", "Palavra atualizada com sucesso!");
+        console.log(favorited);
+      })
+      .catch((error) => {
+        Alert.alert("Erro", `Ocorreu um erro ao atualizar a palavra: ${error}`);
+      });
+  };
+
+  const handleSpeech = async () => {
+    const isSpeeking = await Speech.isSpeakingAsync();
+    if (isSpeeking) {
+      Speech.stop();
+      return;
+    }
+
+    await Speech.speak(word as string);
+    setTimeout(() => {
+      Speech.speak(meaning as string);
+    }, 1500);
+  };
+
+  console.log(id);
+
+  const handleShare = () => {
+    try {
+      Share.share({
+        message: `Palavra: \n`
+          .concat(word as string)
+          .concat("\n\nSignificado:\n")
+          .concat(meaning as string)
+          .concat("\n\nBaixe a aplicação Dicionário da Língua Portuguesa:")
+          .concat(
+            "https://play.google.com/store/apps/details?id=com.dicionariodalinguaportuguesa"
+          ),
+      });
+    } catch (error) {
+      Alert.alert(`Ocorreu um erro inesperdo: ${error}`);
+    }
+  };
+
+  return (
+    <Screen>
+      <TopBar>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <TouchableOpacity onPress={handleShare}>
+            <Icon
+              name="fa-solid fa-share-nodes"
+              customStyle={{ color: "#fff", marginRight: 24 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleFavorite}>
+            <Icon
+              name={`${
+                favorited == "true" ? "fa-solid" : "fa-regular"
+              } fa-heart`}
+              customStyle={{ color: "#fff" }}
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={handleSpeech}>
+          <Icon name="fa-solid fa-microphone" customStyle={{ color: "#fff" }} />
+        </TouchableOpacity>
+      </TopBar>
+      <Container customStyle={{ flex: 1, flexDirection: "column" }}>
+        <View
+          style={[styles.wordContainer, { backgroundColor: theme.background }]}
+        >
+          <Text style={styles.word}>{word}</Text>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={[styles.meaning, { color: "#000" }]}>{meaning}</Text>
+        </ScrollView>
+      </Container>
+    </Screen>
+  );
+};
+
+export default Meaning;
+
+const styles = StyleSheet.create({
+  wordContainer: {
+    marginHorizontal: -12,
+    paddingBottom: 60,
+    marginBottom: 5,
+  },
+  word: {
+    fontFamily: "Montserrat-Regular",
+    fontSize: 29,
+    fontWeight: "100",
+    textAlign: "center",
+    letterSpacing: 0.5,
+    color: "#fff",
+  },
+  meaning: {
+    fontFamily: "Montserrat-Regular",
+    fontSize: 17,
+    letterSpacing: 0.5,
+  },
+});

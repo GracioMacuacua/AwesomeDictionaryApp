@@ -1,0 +1,252 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "word": "a",
+            "meaning": "s. m. Primeira letra do alfabeto e primeira vogal, em português e na maioria dos abecedários conhecidos.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 2,
+            "word": "aba",
+            "meaning": "s. f. 1. Parte pendente da casaca e outras vestes. 2. Beira, borda, orla, margem, rebordo, flange: Aba do chapéu, do telhado, do arreio, da encosta. 3. Extensão de móvel, ao qual se liga por dobradiças. 4. Fralda carnosa da costela inferior da rês. 5. Rebordo em aresta, da côdea do pão. 6. Asa do nariz.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 3,
+            "word": "ababadados",
+            "meaning": "s. m. pl. Folhos de vestidos, saias, etc.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 4,
+            "word": "ababadar",
+            "meaning": "v. Tr. dir. Fazer semelhante a babado ou pregar babados em.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 5,
+            "word": "ababelado",
+            "meaning": "adj. Confuso, desordenado, babélico.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 6,
+            "word": "ababelar",
+            "meaning": "v. 1. Tr. dir. e pron. Pôr(-se) desordenadamente, misturar(-se). 2. Tr. dir. Fazer algo enorme, ou confuso, como a torre de Babel.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 7,
+            "word": "abacá",
+            "meaning": "s. m. Bot. 1. Espécie de bananeira das Filipinas. Sua fibra aplicada em cordas, cabos, capachos e tecidos.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 8,
+            "word": "abaçanar",
+            "meaning": "v. Tr. dir. Tornar baço, escurecer: A. a pele. Var.: abacinar.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 9,
+            "word": "abacate",
+            "meaning": "s. m. Bot. Fruto do abacateiro, ovóide ou piriforme, cor em geral verde, de polpa tenra.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 10,
+            "word": "abacateiro",
+            "meaning": "s. m. Bot. Árvore laurácea, da América tropical, que produz o abacate.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 11,
+            "word": "abacaxi",
+            "meaning": "s. m. Bot. Fruto do abacaxizeiro; ananás. 2. Gír. mil. Granada de mão. 3. Gír. Tudo quanto é indesejável, inútil, perigoso, prejudicial, etc. --- A.-bravo: abacaxi-de-tingir. A.-de-tingir, Bot.: bromeliácea cujo corante amarelo é usado em tinturaria. Descascar o a., Pop.: resolver problema difícil ou desagradável.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 12,
+            "word": "abacaxizeiro",
+            "meaning": "s. m. Bot. Bromeliácea cultivada, que tem forma silvestre no Brasil. Dá uma grande infrutência varnosa, de aroma e sabor intensos.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 13,
+            "word": "abacharelar",
+            "meaning": "v. Pron. Tornar-se ou imitar bacharel.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 14,
+            "word": "abacial",
+            "meaning": "adj. m. e f. Pertencente ou relativo a abade, abadessa e abadia.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 15,
+            "word": "abaciar",
+            "meaning": "v. Tr. dir. Dar forma de bacia a.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 16,
+            "word": "abacinar",
+            "meaning": "v. Abaçanar.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 17,
+            "word": "ábaco",
+            "meaning": "s. m. 1. Arquit. Parte superior do capitel a que se apoia a arquitrave. 2. Mat. Calculador manual para efectuar operações elementares. 3. mat. Diagrama nomográfico; nomograma. 4. Aparador, balcão, bufê. Dim.: abacisco.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 18,
+            "word": "abade",
+            "meaning": "s. m. 1. Superior de uma ordem monástica. 2. O que governa uma abadia. 3. Homem gordo, pachorrento. 4. Omit. Nome popular de um pássaro dentirrostro brasileiro, corvídeo, que se assemelha a pega européia. Fem.: abadessa. Aum.: abadão.",
+            "favorited": true,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 19,
+            "word": "abadecídio",
+            "meaning": "s. m. Assassínio de abade ou abadessa.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 20,
+            "word": "abadengo",
+            "meaning": "adj. Pertencente ou relativo à abadia ou ao abade: Terras abadengas.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 21,
+            "word": "abadernar",
+            "meaning": "v. Tr. dir. Náut. Apertar ou segurar com badernas.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 22,
+            "word": "abadesco",
+            "meaning": "(e), adj. 1. Próprio de abade ou de abadessa. 2. Parecido com abade.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 23,
+            "word": "abadessa",
+            "meaning": "(2). s. f. 1. Prelada maior, superiora ou prioresa de certas comunidades de religiosas. 2. Mulher excessivamente alta e gorda. 3. Gír. Dona de prostíbulo. Aum. pej.: abadessona.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 24,
+            "word": "abadia",
+            "meaning": "s. m. 1. Mosteiro governado por abade ou abadessa. 2. Dignidade, ofício, domínio e regime abacial. 3. Propriedade destinada a residência de monges.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 25,
+            "word": "abadiado",
+            "meaning": "adj. 1. Relativo a abadia. 2. Provido de abades. 3. Que está em abadia.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 26,
+            "word": "abado",
+            "meaning": "adj. Provido de aba, ou de aba levantada.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 27,
+            "word": "abafação",
+            "meaning": "s. f. 1. Ato ou efeito de abafar; abafamento. 2. Canseira, sufocação. 3. Asma, dispnéia. 4. Ocultação, furto.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 28,
+            "word": "abafadela",
+            "meaning": "s. f. Ato de abafar rapidamente.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 29,
+            "word": "abafadiço",
+            "meaning": "adj. 1. Em que falta o ar ou condição de respirar, ou é muito quente para estar-se. 2. Irritadiço, irascível.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 30,
+            "word": "abafado",
+            "meaning": "adj. 1. Coberto, tapado. 2. De calor sufocante. 3. Mal ventilado. 4. Contido, reprimido. 5. Amortecido. 6. Pop. Contrariado, aflito, agoniado. 7. Extremamente ocupado.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        },
+        {
+            "id": 31,
+            "word": "abafador",
+            "meaning": "(ô), adj. Que abafa. S. m. 1. O que abafa; agasalho, cobertura. 2. Peça usada em certos instrumentos musicais para amortecer a vibração dos sons. 3. Capa de feltro para conservar quente o conteúdo de uma vasilha. 4. Gír. Escamoteador, larário, sonegador.",
+            "favorited": false,
+            "seen": false,
+            "selfcreated": false
+        }
+    ]
+}
