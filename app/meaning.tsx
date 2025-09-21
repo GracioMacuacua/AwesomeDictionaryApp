@@ -16,7 +16,6 @@ import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
 import { Icon } from "@components/Icon";
 import * as Speech from "expo-speech";
-import axios from "axios";
 
 const Meaning = () => {
   let { id, word, meaning, favorited } = useLocalSearchParams();
@@ -31,18 +30,6 @@ const Meaning = () => {
   );
 
   const handleFavorite = async () => {
-    axios
-      .patch(process.env.EXPO_PUBLIC_API_HOST + `/data/${id}`, {
-        favorited: favorited == "true" ? false : true,
-      })
-      .then(() => {
-        favorited = favorited == "true" ? "false" : "true";
-        Alert.alert("Sucesso", "Palavra atualizada com sucesso!");
-        console.log(favorited);
-      })
-      .catch((error) => {
-        Alert.alert("Erro", `Ocorreu um erro ao atualizar a palavra: ${error}`);
-      });
   };
 
   const handleSpeech = async () => {

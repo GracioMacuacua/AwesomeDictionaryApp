@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ToastAndroid,
 } from "react-native";
-import axios from "axios";
 import React from "react";
 import debounce from "lodash.debounce";
 import { Icon } from "@components/Icon";
@@ -86,19 +85,6 @@ const Home = () => {
   }, [showSearchbar]);
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(process.env.EXPO_PUBLIC_API_HOST + `/data`)
-      .then((response) => {
-        setWords(response.data);
-      })
-      .catch((error) => {
-        ToastAndroid.show(
-          "Não foi possível carregar os dados. Verifique a sua ligação à internet!.",
-          ToastAndroid.LONG
-        );
-      })
-      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {

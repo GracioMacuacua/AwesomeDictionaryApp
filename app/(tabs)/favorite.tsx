@@ -11,27 +11,12 @@ import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
 import { useEffect, useState } from "react";
 import { Icon } from "@components/Icon";
-import axios from "axios";
 
 const Favorite = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState<DataProps>([]);
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const response = await axios.get<DataProps>(
-          process.env.EXPO_PUBLIC_API_HOST + `/data?favorited=true`
-        );
-        setFavorites(response.data);
-      } catch (error) {
-        ToastAndroid.show("", ToastAndroid.LONG);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchFavorites();
   }, []);
 
   return (
