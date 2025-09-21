@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     fontFamily: "Cabin-Regular",
     fontSize: 20,
     color: "#fff",
+    flex: 1,
   },
   themesContainer: {
     flexDirection: "row",

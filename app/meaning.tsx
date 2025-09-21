@@ -10,13 +10,13 @@ import React, {
 import { useLocalSearchParams } from "expo-router";
 import { Container } from "@components/Container";
 import { _useTheme } from "@context/ThemeContext";
+import { useCallback, useEffect } from "react";
 import { useFocusEffect } from "expo-router";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
 import { Icon } from "@components/Icon";
 import * as Speech from "expo-speech";
 import axios from "axios";
-import { useCallback, useEffect } from "react";
 
 const Meaning = () => {
   let { id, word, meaning, favorited } = useLocalSearchParams();
@@ -80,14 +80,14 @@ const Meaning = () => {
   return (
     <Screen>
       <TopBar>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-          <TouchableOpacity onPress={handleShare}>
+        <View style={styles.leftButtons}>
+          <TouchableOpacity style={styles.iconButton} onPress={handleShare}>
             <Icon
               name="fa-solid fa-share-nodes"
-              customStyle={{ color: "#fff", marginRight: 24 }}
+              customStyle={{ color: "#fff" }}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleFavorite}>
+          <TouchableOpacity style={styles.iconButton} onPress={handleFavorite}>
             <Icon
               name={`${
                 favorited == "true" ? "fa-solid" : "fa-regular"
@@ -96,7 +96,8 @@ const Meaning = () => {
             />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={handleSpeech}>
+        <View style={styles.spacer} />
+        <TouchableOpacity style={styles.iconButton} onPress={handleSpeech}>
           <Icon name="fa-solid fa-microphone" customStyle={{ color: "#fff" }} />
         </TouchableOpacity>
       </TopBar>
@@ -134,5 +135,21 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-Regular",
     fontSize: 17,
     letterSpacing: 0.5,
+  },
+  leftButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
+  iconButton: {
+    minWidth: 40,
+    minHeight: 40,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  spacer: {
+    flex: 1,
   },
 });

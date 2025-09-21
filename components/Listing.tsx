@@ -51,7 +51,7 @@ const Listing = ({ data }: ListingProps) => {
   };
 
   return (
-    <Container customStyle={{ flex: 1, position: "relative" }}>
+    <Container customStyle={styles.container}>
       <FlatList
         ref={flatListRef}
         data={data}
@@ -76,7 +76,7 @@ const Listing = ({ data }: ListingProps) => {
         >
           <Icon
             name="fa-angles-up"
-            // customStyle={{ color: theme.background }}
+            customStyle={{ color: theme.background }}
             size={17}
           />
         </TouchableOpacity>
@@ -88,6 +88,10 @@ const Listing = ({ data }: ListingProps) => {
 export { Listing };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: "relative",
+  },
   upButton: {
     position: "absolute",
     bottom: 40,

@@ -30,7 +30,9 @@ const AddWord = () => {
   return (
     <Screen>
       <TopBar>
+        <></>
         <Text style={styles.text}>Adicionar Palavra</Text>
+        <></>
       </TopBar>
       <Container customStyle={{ flex: 1, marginTop: 50 }}>
         <View style={{ flex: 1 }}>

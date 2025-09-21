@@ -7,7 +7,9 @@ const QuizScreen = () => {
   return (
     <Screen>
       <TopBar>
+        <></>
         <Text style={styles.text}>QUIZ</Text>
+        <></>
       </TopBar>
       <Container customStyle={{ flex: 1 }}>
         <View></View>
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
     fontFamily: "Cabin-Regular",
+    paddingVertical: 5,
     fontSize: 20,
     color: "white",
   },

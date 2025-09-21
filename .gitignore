@@ -35,7 +35,15 @@ yarn-error.*
 *.tsbuildinfo
 
 
+Teste.tsx
 data.ts
+favouriteWords.ts
+# CustomBottomTabBar.tsx
 
+hooks/useDatabase.ts
+services
+script.py
+assets/database
+test
 .env
 app.json

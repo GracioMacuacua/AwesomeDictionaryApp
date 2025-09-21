@@ -1,4 +1,4 @@
-import React, {
+import {
   View,
   Text,
   Alert,
@@ -9,6 +9,7 @@ import React, {
   ToastAndroid,
 } from "react-native";
 import axios from "axios";
+import React from "react";
 import debounce from "lodash.debounce";
 import { Icon } from "@components/Icon";
 import { TopBar } from "@components/TopBar";
@@ -75,7 +76,6 @@ const Home = () => {
   );
 
   useEffect(() => {
-    console.log("Showing Searchbar");
     if (showSearchbar) {
       const timeout = setTimeout(() => {
         inputRef.current?.focus();
@@ -189,22 +189,21 @@ const styles = StyleSheet.create({
     fontFamily: "Cabin-Regular",
     fontSize: 20,
     color: "#fff",
+    flex: 1,
   },
   searchBar: {
-    flex: 0.9,
+    flex: 1,
     color: "white",
-    padding: 0,
     fontSize: 18,
     paddingBottom: 5,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "white",
+    marginHorizontal: 10,
   },
   button: {
-    width: 50,
-    // height: 50,
-    paddingVertical: 10,
+    width: 40,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
   },
 });

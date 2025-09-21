@@ -59,13 +59,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Cabin-Regular",
     fontSize: 20,
+    flex: 1,
   },
   button: {
-    width: 50,
-    // height: 50,
-    paddingVertical: 10,
+    minWidth: 40,
+    minHeight: 40,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
-  }
+  },
 });
