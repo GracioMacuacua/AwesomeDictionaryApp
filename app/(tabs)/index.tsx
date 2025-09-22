@@ -6,19 +6,20 @@ import {
   StyleSheet,
   BackHandler,
   TouchableOpacity,
-  ToastAndroid,
 } from "react-native";
 import React from "react";
 import debounce from "lodash.debounce";
 import { Icon } from "@components/Icon";
 import { TopBar } from "@components/TopBar";
-import { useFocusEffect } from "expo-router";
 import { Screen } from "@components/Screen";
+import { useFocusEffect } from "expo-router";
+import { useDatabase } from "@hooks/useDatabase";
 import { LoadingComponent } from "@components/Loading";
 import { DataProps, Listing } from "@components/Listing";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 
 const Home = () => {
+  const { getWords } = useDatabase();
   const [search, setSearch] = useState("");
   const inputRef = useRef<TextInput>(null);
   const [words, setWords] = useState<DataProps>([]);
@@ -85,6 +86,27 @@ const Home = () => {
   }, [showSearchbar]);
 
   useEffect(() => {
+    const fetchWords = async () => {
+      setIsLoading(true);
+      try {
+        const result = await getWords();
+        const transformedWords = result?.map(word => ({
+          id: word.id,
+          word: word.word,
+          meaning: word.meaning,
+          favorited: Boolean(word.favorite),
+          seen: false, // default value
+          selfcreated: Boolean(word.selfcreated)
+        })) || [];
+        setWords(transformedWords);
+      } catch (error) {
+        console.error("Error fetching words:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWords();
   }, []);
 
   useEffect(() => {

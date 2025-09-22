@@ -2,6 +2,7 @@ import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { _useTheme, ThemeProvider } from "@context/ThemeContext";
 import { SystemBars } from "react-native-edge-to-edge";
 import { loadAssets } from "@hooks/loadAssets";
+import { SQLiteProvider } from "expo-sqlite";
 import { Stack } from "expo-router";
 import React from "react";
 
@@ -33,11 +34,16 @@ const RootLayoutWithTheme = () => {
           bottom: "maximum",
         }}
       >
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="meaning" />
-          <Stack.Screen name="history" />
-        </Stack>
+        <SQLiteProvider
+          databaseName="db.sqlite"
+          assetSource={{ assetId: require("../assets/db.sqlite") }}
+        >
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="meaning" />
+            <Stack.Screen name="history" />
+          </Stack>
+        </SQLiteProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   );
