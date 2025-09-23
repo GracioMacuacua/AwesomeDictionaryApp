@@ -1,17 +1,17 @@
-import React, { useRef, useState } from "react";
 import {
-  Dimensions,
+  Text,
+  View,
   FlatList,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
 } from "react-native";
-import { Container } from "./Container";
-import { Word } from "./Word";
 import { Icon } from "./Icon";
+import { Container } from "./Container";
+import { Word, WordProps } from "./Word";
+import React, { useRef, useState } from "react";
 import { _useTheme } from "@context/ThemeContext";
 
 const ListEmptyComponent = () => {
@@ -22,17 +22,8 @@ const ListEmptyComponent = () => {
   );
 };
 
-export type DataProps = {
-  id: number;
-  word: string;
-  meaning: string;
-  favorited: boolean;
-  seen: boolean;
-  selfcreated: boolean;
-}[];
-
 type ListingProps = {
-  data: DataProps;
+  data: WordProps[];
 };
 
 const Listing = ({ data }: ListingProps) => {
@@ -55,15 +46,16 @@ const Listing = ({ data }: ListingProps) => {
       <FlatList
         ref={flatListRef}
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Word
             id={item.id}
             word={item.word}
             meaning={item.meaning}
-            favorited={item.favorited}
+            favorite={item.favorite}
+            selfcreated={item.selfcreated}
           />
         )}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => `${item.id}_${item.word}_${index}`}
         ListEmptyComponent={ListEmptyComponent}
         showsVerticalScrollIndicator={false}
         initialNumToRender={15}
@@ -74,11 +66,7 @@ const Listing = ({ data }: ListingProps) => {
           style={[{ backgroundColor: theme.background }, styles.upButton]}
           onPress={moveToTop}
         >
-          <Icon
-            name="fa-angles-up"
-            customStyle={{ color: theme.background }}
-            size={17}
-          />
+          <Icon name="fa-angles-up" size={17} />
         </TouchableOpacity>
       )}
     </Container>

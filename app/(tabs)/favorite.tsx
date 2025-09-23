@@ -5,18 +5,44 @@ import React, {
   TouchableOpacity,
   ToastAndroid,
 } from "react-native";
-import { DataProps, Listing } from "@components/Listing";
+import { useCallback, useEffect, useState } from "react";
 import { LoadingComponent } from "@components/Loading";
+import { useDatabase } from "@hooks/useDatabase";
+import { Listing } from "@components/Listing";
+import { WordProps } from "@components/Word";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
-import { useEffect, useState } from "react";
 import { Icon } from "@components/Icon";
 
 const Favorite = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [favorites, setFavorites] = useState<DataProps>([]);
+  const { getFavorites, clearFavorites } = useDatabase();
+  const [favorites, setFavorites] = useState<WordProps[]>([]);
 
   useEffect(() => {
+    const fetchFavorites = async () => {
+      setIsLoading(true);
+      try {
+        const result = await getFavorites();
+        setFavorites(result);
+      } catch (error) {
+        ToastAndroid.show("Erro ao carregar favoritos", ToastAndroid.LONG);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
+
+  const handleRemoveAll = useCallback(async () => {
+    try {
+      await clearFavorites();
+      setFavorites([]);
+      ToastAndroid.show("Todos os favoritos removidos", ToastAndroid.LONG);
+    } catch (error) {
+      ToastAndroid.show("Erro ao remover favoritos", ToastAndroid.LONG);
+    }
   }, []);
 
   return (
@@ -24,7 +50,7 @@ const Favorite = () => {
       <TopBar>
         <View style={styles.button}>{""}</View>
         <Text style={[styles.text, { color: "#FFF" }]}>Favoritas</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleRemoveAll}>
           <Icon
             name="fa-solid fa-trash"
             customStyle={{ color: "#fff" }}

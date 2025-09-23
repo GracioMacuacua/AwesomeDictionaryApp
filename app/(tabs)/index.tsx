@@ -13,17 +13,18 @@ import { Icon } from "@components/Icon";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
 import { useFocusEffect } from "expo-router";
+import { Listing } from "@components/Listing";
 import { useDatabase } from "@hooks/useDatabase";
 import { LoadingComponent } from "@components/Loading";
-import { DataProps, Listing } from "@components/Listing";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
+import { WordProps } from "@components/Word";
 
 const Home = () => {
   const { getWords } = useDatabase();
   const [search, setSearch] = useState("");
   const inputRef = useRef<TextInput>(null);
-  const [words, setWords] = useState<DataProps>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [words, setWords] = useState<WordProps[]>([]);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
@@ -90,14 +91,16 @@ const Home = () => {
       setIsLoading(true);
       try {
         const result = await getWords();
-        const transformedWords = result?.map(word => ({
-          id: word.id,
-          word: word.word,
-          meaning: word.meaning,
-          favorited: Boolean(word.favorite),
-          seen: false, // default value
-          selfcreated: Boolean(word.selfcreated)
-        })) || [];
+        const transformedWords =
+          result
+            ?.map((word, index) => ({
+              id: word.id || index,
+              word: word.word,
+              meaning: word.meaning,
+              favorite: Boolean(word.favorite),
+              selfcreated: Boolean(word.selfcreated),
+            }))
+            .filter((word) => word.id !== undefined) || [];
         setWords(transformedWords);
       } catch (error) {
         console.error("Error fetching words:", error);

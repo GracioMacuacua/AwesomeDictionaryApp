@@ -6,7 +6,8 @@ type WordProps = {
   id: number;
   word: string;
   meaning: string;
-  favorited: string;
+  favorite: boolean;
+  selfcreated: boolean;
 };
 
 const Word = React.memo((data: WordProps) => {
@@ -15,7 +16,16 @@ const Word = React.memo((data: WordProps) => {
   return (
     <Pressable style={styles.botao}>
       <Link
-        href={{ pathname: "/meaning", params: data }}
+        href={{
+          pathname: "/meaning",
+          params: {
+            id: data.id,
+            word: data.word,
+            meaning: data.meaning,
+            favorite: data.favorite ? "true" : "false",
+            selfcreated: data.selfcreated ? "true" : "false",
+          },
+        }}
         style={[styles.text, pressed ? styles.onPress : null]}
       >
         {data.word}

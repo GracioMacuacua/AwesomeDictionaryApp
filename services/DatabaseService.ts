@@ -1,12 +1,5 @@
 import * as SQLite from "expo-sqlite";
-
-export type Word = {
-  id: number;
-  word: string;
-  meaning: string;
-  favorite?: boolean;
-  selfcreated: boolean;
-};
+import { WordProps } from "@components/Word";
 
 class DatabaseService {
   private static instance: DatabaseService;
@@ -33,12 +26,12 @@ class DatabaseService {
     return this.db;
   }
 
-  async getWords(): Promise<Array<Word>> {
+  async getWords(): Promise<Array<WordProps>> {
     try {
-      const result = await this.getDatabase().getAllAsync<Word>(`
-          SELECT id, word, meaning, selfcreated 
-          FROM words
-          ORDER BY word ASC
+      const result = await this.getDatabase().getAllAsync<WordProps>(`
+          SELECT W.id, W.word, W.meaning, W.selfcreated, CASE WHEN f.id IS NOT NULL THEN 1 ELSE 0 END as favorite
+          FROM words W LEFT JOIN favorites f ON W.id = f.word_id
+          ORDER BY W.word ASC
         `);
       return result;
     } catch (error) {
@@ -77,9 +70,9 @@ class DatabaseService {
   async getFavorites() {
     try {
       const result = await this.getDatabase().getAllAsync<
-        Word & { favoriteId: number }
+        WordProps & { favoriteId: number }
       >(
-        `SELECT w.id, w.word, w.meaning, w.selfcreated f.id as favoriteId FROM words w JOIN favorites f ON w.id = f.word_id`
+        `SELECT w.id, w.word, w.meaning, w.selfcreated, f.id as favoriteId FROM words w JOIN favorites f ON w.id = f.word_id`
       );
       return result;
     } catch (error) {
@@ -123,7 +116,7 @@ class DatabaseService {
   async getHistory() {
     try {
       const result = await this.getDatabase().getAllAsync(
-        `SELECT w.id, w.word, w.meaning, w.selfcreated FROM words w JOIN history h ON w.id = h.word-id`
+        `SELECT w.id, w.word, w.meaning, w.selfcreated FROM words w JOIN history h ON w.id = h.word_id`
       );
       return result;
     } catch (error) {
@@ -133,9 +126,7 @@ class DatabaseService {
 
   async clearHistory() {
     try {
-      const result = await this.getDatabase().getAllAsync(
-        `DELETE FROM history`
-      );
+      const result = await this.getDatabase().runAsync(`DELETE FROM history`);
       return result;
     } catch (error) {
       throw error;

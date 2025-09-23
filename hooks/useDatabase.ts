@@ -1,5 +1,6 @@
-import { databaseService, Word } from "../services/DatabaseService";
+import { databaseService } from "../services/DatabaseService";
 import { useSQLiteContext } from "expo-sqlite";
+import { WordProps } from "@components/Word";
 import { ToastAndroid } from "react-native";
 import React, { useEffect } from "react";
 
@@ -18,7 +19,7 @@ export const useDatabase = () => {
     initDb();
   }, [db]);
 
-  async function getWords(): Promise<Array<Word>> {
+  async function getWords(): Promise<Array<WordProps>> {
     try {
       return await databaseService.getWords();
     } catch (error) {
@@ -42,6 +43,15 @@ export const useDatabase = () => {
     } catch (error) {
       ToastAndroid.show("Error getting favorites", ToastAndroid.LONG);
       throw new Error("Error getting favorites:\n" + error);
+    }
+  }
+
+  async function saveFavorite(id: number) {
+    try {
+      return await databaseService.insertFavorite(id);
+    } catch (error) {
+      ToastAndroid.show("Error saving favorite", ToastAndroid.LONG);
+      throw new Error("Error saving favorite:\n" + error);
     }
   }
 
@@ -85,6 +95,7 @@ export const useDatabase = () => {
     saveWord,
     getWords,
     getFavorites,
+    saveFavorite,
     deleteFavorite,
     clearFavorites,
     getHistory,

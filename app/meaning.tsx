@@ -1,16 +1,18 @@
 import React, {
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   Share,
   Alert,
+  StyleSheet,
   ScrollView,
+  ToastAndroid,
+  TouchableOpacity,
 } from "react-native";
+import { useCallback, useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Container } from "@components/Container";
 import { _useTheme } from "@context/ThemeContext";
-import { useCallback, useEffect } from "react";
+import { useDatabase } from "@hooks/useDatabase";
 import { useFocusEffect } from "expo-router";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
@@ -18,7 +20,9 @@ import { Icon } from "@components/Icon";
 import * as Speech from "expo-speech";
 
 const Meaning = () => {
-  let { id, word, meaning, favorited } = useLocalSearchParams();
+  let { id, word, meaning, favorite } = useLocalSearchParams();
+  const [isFavorite, setIsFavorite] = useState<boolean>(favorite == "true");
+  const { saveFavorite, deleteFavorite } = useDatabase();
   const { theme } = _useTheme();
 
   useFocusEffect(
@@ -30,6 +34,22 @@ const Meaning = () => {
   );
 
   const handleFavorite = async () => {
+    try {
+      if (!isFavorite) {
+        await saveFavorite(Number(id));
+        ToastAndroid.show(
+          "Palavra adicionada aos favoritos",
+          ToastAndroid.LONG
+        );
+        setIsFavorite(true);
+      } else {
+        await deleteFavorite(Number(id));
+        ToastAndroid.show("Palavra removida dos favoritos", ToastAndroid.LONG);
+        setIsFavorite(false);
+      }
+    } catch (error) {
+      ToastAndroid.show("Erro ao favoritar palavra", ToastAndroid.LONG);
+    }
   };
 
   const handleSpeech = async () => {
@@ -44,8 +64,6 @@ const Meaning = () => {
       Speech.speak(meaning as string);
     }, 1500);
   };
-
-  console.log(id);
 
   const handleShare = () => {
     try {
@@ -76,9 +94,7 @@ const Meaning = () => {
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton} onPress={handleFavorite}>
             <Icon
-              name={`${
-                favorited == "true" ? "fa-solid" : "fa-regular"
-              } fa-heart`}
+              name={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart`}
               customStyle={{ color: "#fff" }}
             />
           </TouchableOpacity>
