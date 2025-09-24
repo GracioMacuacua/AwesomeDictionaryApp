@@ -20,10 +20,10 @@ import { Icon } from "@components/Icon";
 import * as Speech from "expo-speech";
 
 const Meaning = () => {
+  const { theme } = _useTheme();
+  const { saveFavorite, deleteFavorite } = useDatabase();
   let { id, word, meaning, favorite } = useLocalSearchParams();
   const [isFavorite, setIsFavorite] = useState<boolean>(favorite == "true");
-  const { saveFavorite, deleteFavorite } = useDatabase();
-  const { theme } = _useTheme();
 
   useFocusEffect(
     useCallback(() => {
@@ -33,7 +33,7 @@ const Meaning = () => {
     }, [])
   );
 
-  const handleFavorite = async () => {
+  const handleFavorite = useCallback(async () => {
     try {
       if (!isFavorite) {
         await saveFavorite(Number(id));
@@ -50,9 +50,9 @@ const Meaning = () => {
     } catch (error) {
       ToastAndroid.show("Erro ao favoritar palavra", ToastAndroid.LONG);
     }
-  };
+  }, [isFavorite, id]);
 
-  const handleSpeech = async () => {
+  const handleSpeech = useCallback(async () => {
     const isSpeeking = await Speech.isSpeakingAsync();
     if (isSpeeking) {
       Speech.stop();
@@ -63,9 +63,9 @@ const Meaning = () => {
     setTimeout(() => {
       Speech.speak(meaning as string);
     }, 1500);
-  };
+  }, [word, meaning]);
 
-  const handleShare = () => {
+  const handleShare = useCallback(() => {
     try {
       Share.share({
         message: `Palavra: \n`
@@ -80,7 +80,7 @@ const Meaning = () => {
     } catch (error) {
       Alert.alert(`Ocorreu um erro inesperdo: ${error}`);
     }
-  };
+  }, [word, meaning]);
 
   return (
     <Screen>

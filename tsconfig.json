@@ -7,8 +7,14 @@
       "@app/*": [
         "app/*"
       ],
+      "@assets/*": [
+        "assets/*"
+      ],
       "@components/*": [
         "components/*"
+      ],
+      "@constants/*": [
+        "constants/*"
       ],
       "@context/*": [
         "context/*"
@@ -16,8 +22,8 @@
       "@hooks/*": [
         "hooks/*"
       ],
-      "@constants/*": [
-        "constants/*"
+      "@services/*": [
+        "services/*"
       ]
     }
   },

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
-import { COLORS, THEMES } from "../constants/Themes";
+import { COLORS, THEMES } from "@constants/Themes";
 
 export type Theme = {
   name: COLORS;

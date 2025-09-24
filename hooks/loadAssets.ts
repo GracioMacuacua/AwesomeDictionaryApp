@@ -16,6 +16,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useFonts } from "expo-font";
 
@@ -42,6 +43,7 @@ const loadAssets = () => {
     faSquarePlus,
     faClockRotateLeft,
     faAnglesUp,
+    faUser,
     faX
   );
 

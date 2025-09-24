@@ -1,4 +1,4 @@
-import { databaseService } from "../services/DatabaseService";
+import { databaseService } from "@services/DatabaseService";
 import { useSQLiteContext } from "expo-sqlite";
 import { WordProps } from "@components/Word";
 import { ToastAndroid } from "react-native";

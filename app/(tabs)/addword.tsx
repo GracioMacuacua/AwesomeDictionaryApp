@@ -1,9 +1,9 @@
 import {
-  StyleSheet,
+  View,
   Text,
+  StyleSheet,
   ToastAndroid,
   TouchableOpacity,
-  View,
 } from "react-native";
 import { _TextInput as TextInput } from "@components/TextInput";
 import React, { useState, useCallback } from "react";
@@ -23,9 +23,12 @@ const AddWord = () => {
   const [meaning, setMeaning] = useState("");
   const [checked, setChecked] = useState(false);
 
-  const toggleChecked = () => setChecked((previousState) => !previousState);
+  const toggleChecked = useCallback(
+    () => setChecked((previousState) => !previousState),
+    []
+  );
 
-  const handleSaveWord = async () => {
+  const handleSaveWord = useCallback(async () => {
     try {
       await saveWord(word, meaning, checked);
       ToastAndroid.show("Palavra salva com sucesso", ToastAndroid.LONG);
@@ -33,7 +36,7 @@ const AddWord = () => {
     } catch (error) {
       ToastAndroid.show("Erro ao salvar palavra", ToastAndroid.LONG);
     }
-  };
+  }, [word, meaning, checked]);
 
   const clearForm = useCallback(() => {
     setWord("");

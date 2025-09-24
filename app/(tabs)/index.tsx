@@ -12,12 +12,12 @@ import debounce from "lodash.debounce";
 import { Icon } from "@components/Icon";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
+import { WordProps } from "@components/Word";
 import { useFocusEffect } from "expo-router";
 import { Listing } from "@components/Listing";
 import { useDatabase } from "@hooks/useDatabase";
 import { LoadingComponent } from "@components/Loading";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { WordProps } from "@components/Word";
 
 const Home = () => {
   const { getWords } = useDatabase();
