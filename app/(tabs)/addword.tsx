@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { _TextInput as TextInput } from "@components/TextInput";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { Container } from "@components/Container";
 import { _useTheme } from "@context/ThemeContext";
 import { useDatabase } from "@hooks/useDatabase";
@@ -14,27 +14,50 @@ import { CheckBox } from "@components/CheckBox";
 import { useFocusEffect } from "expo-router";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
+import Message from "@components/Message";
 import { Icon } from "@components/Icon";
+import * as z from "zod";
+
+const WordSchema = z.object({
+  word: z.string().min(1, "A palavra não pode estar vazia"),
+  meaning: z.string().min(1, "O significado não pode estar vazio"),
+  favorite: z.boolean("O estado favorito deve ser um booleano"),
+});
 
 const AddWord = () => {
   const { theme } = _useTheme();
   const { saveWord } = useDatabase();
   const [word, setWord] = useState("");
+  const [message, setMessage] = useState("");
   const [meaning, setMeaning] = useState("");
   const [checked, setChecked] = useState(false);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
+  const [messageType, setMessageType] = useState<"error" | "info">("error");
 
   const toggleChecked = useCallback(
     () => setChecked((previousState) => !previousState),
     []
   );
 
+  const handleErrorDismiss = useCallback(() => setIsMessageVisible(false), []);
+
   const handleSaveWord = useCallback(async () => {
     try {
+      WordSchema.parse({ word, meaning, favorite: checked });
       await saveWord(word, meaning, checked);
-      ToastAndroid.show("Palavra salva com sucesso", ToastAndroid.LONG);
+      setMessageType("info");
+      setMessage("Palavra registrada com sucesso!");
+      setIsMessageVisible(true);
       clearForm();
     } catch (error) {
-      ToastAndroid.show("Erro ao salvar palavra", ToastAndroid.LONG);
+      if (error instanceof z.ZodError) {
+        setMessageType("error");
+        setMessage(error?.issues.shift()?.message!);
+        setIsMessageVisible(true);
+        return;
+      }
+
+      ToastAndroid.show("Ocorreu um erro: " + error, ToastAndroid.LONG);
     }
   }, [word, meaning, checked]);
 
@@ -85,6 +108,14 @@ const AddWord = () => {
             </TouchableOpacity>
           </View>
         </View>
+        <View style={styles.messageContainer}>
+          <Message
+            type={messageType}
+            message={message}
+            visible={isMessageVisible}
+            onDismiss={handleErrorDismiss}
+          />
+        </View>
       </Container>
     </Screen>
   );
@@ -124,5 +155,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
+  },
+  messageContainer: {
+    position: "relative",
   },
 });
