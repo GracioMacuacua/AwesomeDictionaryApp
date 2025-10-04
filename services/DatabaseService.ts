@@ -115,7 +115,7 @@ class DatabaseService {
 
   async getHistory() {
     try {
-      const result = await this.getDatabase().getAllAsync(
+      const result = await this.getDatabase().getAllAsync<WordProps>(
         `SELECT w.id, w.word, w.meaning, w.selfcreated FROM words w JOIN history h ON w.id = h.word_id`
       );
       return result;
