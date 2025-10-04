@@ -8,8 +8,10 @@ import { Screen } from "@components/Screen";
 import { Color } from "@components/Color";
 import React, { useState } from "react";
 import { Icon } from "@components/Icon";
+import { useRouter } from "expo-router";
 
 const Settings = () => {
+  const router = useRouter();
   const { theme, toggleTheme } = _useTheme();
   const [isEnabled, setIsEnabled] = useState(false);
 
@@ -19,9 +21,18 @@ const Settings = () => {
     {
       icon: { name: "fa-solid fa-share-nodes" },
       text: "Partilhar App",
+      fn: () => {},
     },
-    { icon: { name: "fa-solid fa-square-plus" }, text: "Mais Apps" },
-    { icon: { name: "fa-solid fa-clock-rotate-left" }, text: "Histórico" }
+    {
+      icon: { name: "fa-solid fa-square-plus" },
+      text: "Mais Apps",
+      fn: () => {},
+    },
+    {
+      icon: { name: "fa-solid fa-clock-rotate-left" },
+      text: "Histórico",
+      fn: () => router.push("/history"),
+    }
   );
 
   return (
@@ -64,8 +75,7 @@ const Settings = () => {
                 customStyle: { color: theme.background },
               }}
               text={button.text}
-              onPress={() => {}}
-              onLongPress={() => {}}
+              onPress={button.fn}
               customStyle={{
                 backgroundColor: theme.background,
                 paddingVertical: 12,
@@ -76,7 +86,12 @@ const Settings = () => {
         </View>
         <View style={styles.notification}>
           <View style={{ flexDirection: "column" }}>
-            <Text style={[styles.text, { textAlign: "left", marginBottom: 5, color: "#000" }]}>
+            <Text
+              style={[
+                styles.text,
+                { textAlign: "left", marginBottom: 5, color: "#000" },
+              ]}
+            >
               Notificação
             </Text>
             <Text>Notificações diárias desactivadas</Text>
@@ -121,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     gap: 10,
-    marginVertical: 25
+    marginVertical: 25,
   },
   notification: {
     flexDirection: "row",
