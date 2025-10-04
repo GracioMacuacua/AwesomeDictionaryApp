@@ -14,8 +14,8 @@ const RootLayout = () => {
   return (
     <ThemeProvider>
       <SystemBars
-        style={{ statusBar: "light", navigationBar: "light" }}
-        hidden={{ statusBar: false, navigationBar: true }}
+        style={{ statusBar: "inverted", navigationBar: "inverted" }}
+        hidden={{ statusBar: false, navigationBar: false }}
       />
       <RootLayoutWithTheme />
     </ThemeProvider>
