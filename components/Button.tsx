@@ -13,7 +13,7 @@ interface _ButtonProps {
   isFocused?: boolean;
   customStyle?: ViewStyle;
   onPress: () => void;
-  onLongPress: () => void;
+  onLongPress?: () => void;
 }
 
 const Button = ({
