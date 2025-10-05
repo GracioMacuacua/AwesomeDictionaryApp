@@ -12,13 +12,6 @@ const BottomTabBar = ({ state, navigation }: any) => {
     { name: "fa-solid fa-gear" },
   ];
 
-  if (
-    state.index === state.routeNames.indexOf("SIGNIFICADO") ||
-    state.index === state.routeNames.indexOf("HISTÓRICO")
-  ) {
-    return null;
-  }
-
   return (
     <Container customStyle={styles.navigationBar}>
       {state.routes.slice(0, 5).map((route, index) => {
