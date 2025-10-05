@@ -36,7 +36,7 @@ const RootLayoutWithTheme = () => {
       >
         <SQLiteProvider
           databaseName="db.sqlite"
-          assetSource={{ assetId: require("../assets/db.sqlite") }}
+          assetSource={{ assetId: require("../assets/database/db.sqlite") }}
         >
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />
