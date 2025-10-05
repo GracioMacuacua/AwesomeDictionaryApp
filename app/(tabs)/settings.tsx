@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text, Switch } from "react-native";
-import { COLORS, THEMES } from "@constants/Themes";
+import { CustomButton } from "@/components/CustomButton";
 import { Container } from "@components/Container";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 import { TopBar } from "@components/TopBar";
-import { Button } from "@components/Button";
 import { Screen } from "@components/Screen";
+import { COLOR } from "@/types/theme/color";
+import { THEMES } from "@constants/Themes";
 import { Color } from "@components/Color";
 import React, { useState } from "react";
 import { Icon } from "@components/Icon";
@@ -12,7 +13,7 @@ import { useRouter } from "expo-router";
 
 const Settings = () => {
   const router = useRouter();
-  const { theme, toggleTheme } = _useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
@@ -60,7 +61,7 @@ const Settings = () => {
           {Object.entries(THEMES).map((_theme, key) => (
             <Color
               key={key}
-              color={{ name: _theme[0] as COLORS, code: _theme[1].background }}
+              color={{ name: _theme[0] as COLOR, code: _theme[1].background }}
               onSelect={toggleTheme}
               selected={theme.name}
             />
@@ -68,7 +69,7 @@ const Settings = () => {
         </View>
         <View style={styles.buttonsContainer}>
           {buttonList.map((button, id) => (
-            <Button
+            <CustomButton
               key={id}
               icon={{
                 name: button.icon.name,

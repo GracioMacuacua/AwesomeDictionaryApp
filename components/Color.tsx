@@ -1,12 +1,7 @@
 import React, { StyleSheet, TouchableOpacity } from "react-native";
+import { ColorProps } from "@/types/color";
 import { Icon } from "./Icon";
-import { COLORS } from "@constants/Themes";
 
-type ColorProps = {
-  color: { name: COLORS; code: string };
-  onSelect: (name: COLORS) => void;
-  selected: string;
-};
 
 const Color = ({ color, onSelect, selected }: ColorProps) => {
   return (

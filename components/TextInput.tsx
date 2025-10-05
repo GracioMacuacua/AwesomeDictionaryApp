@@ -5,17 +5,12 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
+import { useTheme } from "@context/ThemeContext";
+import { TextInputProps } from "@/types/textinput";
 import { View, TextInput, Animated, StyleSheet, Easing } from "react-native";
-import { _useTheme } from "@context/ThemeContext";
-
-type TextInputProps = {
-  label: string;
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
-};
 
 const _TextInput = ({ label, state, setState }: TextInputProps) => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
   const focusAnim = useRef(new Animated.Value(0)).current;
   const [isFocused, setIsFocused] = useState(false);
 

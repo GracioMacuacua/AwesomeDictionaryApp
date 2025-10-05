@@ -9,10 +9,11 @@ import {
   NativeSyntheticEvent,
 } from "react-native";
 import { Icon } from "./Icon";
+import { Word } from "./Word";
 import { Container } from "./Container";
-import { Word, WordProps } from "./Word";
+import { WordProps } from "@/types/word";
 import React, { useRef, useState } from "react";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 
 const ListEmptyComponent = () => {
   return (
@@ -22,14 +23,10 @@ const ListEmptyComponent = () => {
   );
 };
 
-type ListingProps = {
-  data: WordProps[];
-};
-
-const Listing = ({ data }: ListingProps) => {
+const Listing = ({ data }: { data: WordProps[] }) => {
   const [scrollY, setScrollY] = useState(0);
   const flatListRef = useRef<FlatList>(null);
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScrollY(event.nativeEvent.contentOffset.y);

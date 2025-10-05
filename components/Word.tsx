@@ -1,14 +1,7 @@
-import React, { useState } from "react";
 import { StyleSheet, Pressable } from "react-native";
+import { WordProps } from "@/types/word";
+import React, { useState } from "react";
 import { Link } from "expo-router";
-
-type WordProps = {
-  id: number;
-  word: string;
-  meaning: string;
-  favorite: boolean;
-  selfcreated: boolean;
-};
 
 const Word = React.memo((data: WordProps) => {
   const [pressed, setPressed] = useState(false);
@@ -52,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { WordProps, Word };
+export { Word };

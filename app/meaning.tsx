@@ -11,7 +11,7 @@ import React, {
 import { useCallback, useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { Container } from "@components/Container";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 import { useDatabase } from "@hooks/useDatabase";
 import { useFocusEffect } from "expo-router";
 import { TopBar } from "@components/TopBar";
@@ -20,7 +20,7 @@ import { Icon } from "@components/Icon";
 import * as Speech from "expo-speech";
 
 const Meaning = () => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
   const { saveFavorite, deleteFavorite } = useDatabase();
   let { id, word, meaning, favorite } = useLocalSearchParams();
   const [isFavorite, setIsFavorite] = useState<boolean>(favorite == "true");

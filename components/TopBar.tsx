@@ -1,11 +1,11 @@
 import { PropsWithChildren } from "react";
 import React, { StyleSheet, Dimensions, View } from "react-native";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 
 const { width: screenWidth } = Dimensions.get("window");
 
 const TopBar = ({ children }: PropsWithChildren) => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
   const styles = StyleSheet.create({
     topBar: {
       flexDirection: "row",

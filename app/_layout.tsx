@@ -1,5 +1,5 @@
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import { _useTheme, ThemeProvider } from "@context/ThemeContext";
+import { useTheme, ThemeProvider } from "@context/ThemeContext";
 import { SystemBars } from "react-native-edge-to-edge";
 import { loadAssets } from "@hooks/loadAssets";
 import { SQLiteProvider } from "expo-sqlite";
@@ -23,7 +23,7 @@ const RootLayout = () => {
 };
 
 const RootLayoutWithTheme = () => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
 
   return (
     <SafeAreaProvider>

@@ -8,7 +8,7 @@ import {
 import { _TextInput as TextInput } from "@components/TextInput";
 import React, { useState, useCallback, useRef } from "react";
 import { Container } from "@components/Container";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 import { useDatabase } from "@hooks/useDatabase";
 import { CheckBox } from "@components/CheckBox";
 import { useFocusEffect } from "expo-router";
@@ -25,7 +25,7 @@ const WordSchema = z.object({
 });
 
 const AddWord = () => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
   const { saveWord } = useDatabase();
   const [word, setWord] = useState("");
   const [message, setMessage] = useState("");

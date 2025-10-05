@@ -1,9 +1,15 @@
-import React, { StyleSheet } from "react-native";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import { CustomButton } from "./CustomButton";
+import { StyleSheet } from "react-native";
+import { IconProps } from "@/types/icon";
 import { Container } from "./Container";
-import { Button } from "./Button";
-import { IconProps } from "./Icon";
+import React from "react";
 
-const BottomTabBar = ({ state, navigation }: any) => {
+const BottomTabBar = ({
+  state,
+  navigation,
+  descriptors,
+}: Omit<BottomTabBarProps, "insets">) => {
   const icons: IconProps[] = [
     { name: "fa-solid fa-book" },
     { name: "fa-solid fa-circle-question" },
@@ -21,6 +27,7 @@ const BottomTabBar = ({ state, navigation }: any) => {
           const event = navigation.emit({
             type: "tabPress",
             target: route.key,
+            canPreventDefault: true,
           });
 
           if (!isFocused && !event.defaultPrevented) {
@@ -35,11 +42,14 @@ const BottomTabBar = ({ state, navigation }: any) => {
           });
         };
 
+        const options = descriptors[route.key].options;
+        const buttonTitle = options.title || route.name;
+
         return (
-          <Button
-            key={index}
+          <CustomButton
+            key={route.key}
             icon={icons[index]}
-            text={route.name}
+            text={buttonTitle}
             customStyle={{ paddingTop: 20 }}
             isFocused={isFocused}
             onPress={onPress}

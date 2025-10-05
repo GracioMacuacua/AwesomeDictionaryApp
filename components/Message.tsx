@@ -1,13 +1,6 @@
 import { Animated, Text, StyleSheet, Easing } from "react-native";
 import React, { useEffect, useRef } from "react";
-
-export interface IMessage {
-  type: "error" | "info";
-  message?: string;
-  duration?: number;
-  visible: boolean;
-  onDismiss: () => void;
-}
+import { MessageProps } from "@/types/message";
 
 const Message = ({
   visible,
@@ -15,7 +8,7 @@ const Message = ({
   message,
   duration,
   onDismiss,
-}: IMessage) => {
+}: MessageProps) => {
   const messageAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {

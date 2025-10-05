@@ -1,8 +1,9 @@
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import React, { useState, useEffect } from "react";
 import { Platform, Keyboard } from "react-native";
 import { BottomTabBar } from "./BottomTabBar";
 
-const CustomBottomTabBar = (props) => {
+const CustomBottomTabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const CustomBottomTabBar = (props) => {
   const render = () => {
     if (isKeyboardVisible && Platform.OS === "android") return null;
 
-    return <BottomTabBar state={props.state} navigation={props.navigation} />;
+    return <BottomTabBar state={state} navigation={navigation} descriptors={descriptors} />;
   };
 
   return render();

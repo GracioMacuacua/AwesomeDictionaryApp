@@ -1,16 +1,11 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
+import { CheckBoxProps } from "@/types/checkbox";
 import { Icon } from "./Icon";
 import React from "react";
 
-type CheckBoxProps = {
-  state: boolean;
-  handlePress: () => void;
-  size?: number;
-};
-
 const CheckBox = ({ state, handlePress, size }: CheckBoxProps) => {
-  const { theme } = _useTheme();
+  const { theme } = useTheme();
   return (
     <TouchableOpacity
       style={[

@@ -4,29 +4,22 @@ import React, {
   ViewStyle,
   TouchableOpacity,
 } from "react-native";
-import { Icon, IconProps } from "./Icon";
-import { _useTheme } from "@context/ThemeContext";
+import { Icon } from "./Icon";
+import { useTheme } from "@context/ThemeContext";
+import { CustomButtonProps } from "@/types/custombutton";
 
-interface _ButtonProps {
-  icon: IconProps;
-  text: string;
-  isFocused?: boolean;
-  customStyle?: ViewStyle;
-  onPress: () => void;
-  onLongPress?: () => void;
-}
-
-const Button = ({
+const CustomButton = ({
   icon,
   text,
   isFocused,
   customStyle,
   onPress,
   onLongPress,
-}: _ButtonProps) => {
-  const { theme } = _useTheme();
+}: CustomButtonProps) => {
+  const { theme } = useTheme();
   return (
     <TouchableOpacity
+      key={Date.now().toString()}
       style={[styles.container, customStyle]}
       onPress={onPress}
       onLongPress={onLongPress}
@@ -54,8 +47,7 @@ const Button = ({
   );
 };
 
-export type { _ButtonProps };
-export { Button };
+export { CustomButton };
 
 const styles = StyleSheet.create({
   container: {

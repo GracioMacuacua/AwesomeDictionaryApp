@@ -1,7 +1,7 @@
 import { Icon } from "@components/Icon";
+import { WordProps } from "@/types/word";
 import { Screen } from "@components/Screen";
 import { TopBar } from "@components/TopBar";
-import { WordProps } from "@components/Word";
 import { Listing } from "@components/Listing";
 import { useDatabase } from "@hooks/useDatabase";
 import { LoadingComponent } from "@components/Loading";

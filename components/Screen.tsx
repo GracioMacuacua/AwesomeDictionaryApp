@@ -1,4 +1,4 @@
-import { _useTheme } from "@context/ThemeContext";
+import { useTheme } from "@context/ThemeContext";
 import { View, ViewProps } from "react-native";
 import React from "react";
 

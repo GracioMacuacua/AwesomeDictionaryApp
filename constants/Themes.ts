@@ -1,23 +1,4 @@
-export type COLORS =
-  | "darkblue"
-  | "kelly_green"
-  | "amaranth"
-  | "grape"
-  | "mantis"
-  | "pictron_blue"
-  | "slate_gray"
-  | "dogwood_rose"
-  | "yinme_blue"
-  | "satin_sheen_gold"
-  | "liver"
-  | "chocolate_cosmos";
-
-export type ThemeProps = {
-  [themeName in COLORS]: {
-    background: string;
-    statusbar: string;
-  };
-};
+import { ThemeProps } from "@/types/theme";
 
 export const THEMES: ThemeProps = {
   darkblue: { background: "#152439", statusbar: "#091629" },

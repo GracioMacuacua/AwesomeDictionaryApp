@@ -1,8 +1,8 @@
 import { databaseService } from "@services/DatabaseService";
 import { useSQLiteContext } from "expo-sqlite";
-import { WordProps } from "@components/Word";
 import { ToastAndroid } from "react-native";
 import React, { useEffect } from "react";
+import { WordProps } from "@/types/word";
 
 export const useDatabase = () => {
   const db = useSQLiteContext();

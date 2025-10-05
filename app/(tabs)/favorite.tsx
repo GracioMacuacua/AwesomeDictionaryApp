@@ -9,9 +9,9 @@ import { useCallback, useEffect, useState } from "react";
 import { LoadingComponent } from "@components/Loading";
 import { useDatabase } from "@hooks/useDatabase";
 import { Listing } from "@components/Listing";
-import { WordProps } from "@components/Word";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
+import { WordProps } from "@/types/word";
 import { Icon } from "@components/Icon";
 
 const Favorite = () => {

@@ -1,5 +1,5 @@
 import * as SQLite from "expo-sqlite";
-import { WordProps } from "@components/Word";
+import { WordProps } from "@/types/word";
 
 class DatabaseService {
   private static instance: DatabaseService;
