@@ -1,43 +1,57 @@
 {
-    "expo": {
-        "name": "PROJECT_NAME",
-        "slug": "PROJECT_SLUG",
-        "version": "VERSION",
-        "icon": "ICON_PATH",
-        "scheme": "SCHEME",
-        "userInterfaceStyle": "UI_STYLE",
-        "splash": {
-            "image": "SPLASH_IMAGE_PATH",
-            "resizeMode": "RESIZE_MODE",
-            "backgroundColor": "BACKGROUND_COLOR"
-        },
-        "assetBundlePatterns": [
-            "ASSET_PATTERN"
-        ],
-        "ios": {
-            "supportsTablet": "SUPPORTS_TABLET",
-            "bundleIdentifier": "IOS_BUNDLE_IDENTIFIER"
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "FOREGROUND_IMAGE_PATH",
-                "backgroundColor": "BACKGROUND_COLOR"
-            },
-            "package": "ANDROID_PACKAGE",
-            "edgeToEdgeEnabled": "EDGE_TO_EDGE_ENABLED"
-        },
-        "web": {
-            "favicon": "FAVICON_PATH"
-        },
-        "extra": {
-            "eas": {
-                "projectId": "PROJECT_ID"
-            }
-        },
-        "owner": "OWNER",
-        "plugins": [
-            "PLUGIN_1",
-            "PLUGIN_2"
-        ]
-    }
+  "expo": {
+    "name": "PROJECT_NAME",
+    "slug": "PROJECT_SLUG",
+    "version": "VERSION",
+    "icon": "ICON_PATH",
+    "scheme": "SCHEME",
+    "userInterfaceStyle": "UI_STYLE",
+    "splash": {
+      "image": "SPLASH_IMAGE_PATH",
+      "resizeMode": "RESIZE_MODE",
+      "backgroundColor": "BACKGROUND_COLOR"
+    },
+    "assetBundlePatterns": ["ASSET_PATTERN"],
+    "ios": {
+      "supportsTablet": "SUPPORTS_TABLET",
+      "bundleIdentifier": "IOS_BUNDLE_IDENTIFIER"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "FOREGROUND_IMAGE_PATH",
+        "backgroundColor": "BACKGROUND_COLOR"
+      },
+      "package": "ANDROID_PACKAGE",
+      "edgeToEdgeEnabled": "EDGE_TO_EDGE_ENABLED"
+    },
+    "web": {
+      "favicon": "FAVICON_PATH"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "PROJECT_ID"
+      }
+    },
+    "owner": "graciomacuacua",
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-sqlite",
+        {
+          "enableFTS": true,
+          "useSQLCipher": true,
+          "android": {
+            "enableFTS": false,
+            "useSQLCipher": false
+          },
+          "ios": {
+            "customBuildFlags": [
+              "-DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_SNAPSHOT=1"
+            ]
+          }
+        }
+      ]
+    ]
+  }
 }
