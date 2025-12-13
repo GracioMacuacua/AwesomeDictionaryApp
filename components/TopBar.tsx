@@ -14,7 +14,7 @@ const TopBar = ({ children }: PropsWithChildren) => {
       backgroundColor: theme.background,
       paddingHorizontal: Math.max(screenWidth * 0.04, 12),
       paddingVertical: Math.max(screenWidth * 0.025, 10),
-      height: Math.max(screenWidth * 0.15, 56), // Altura FIXA para garantir consistência
+      height: Math.max(screenWidth * 0.15, 56),
     },
   });
 
