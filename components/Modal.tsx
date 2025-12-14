@@ -154,8 +154,12 @@ const styles = StyleSheet.create({
     gap: 24,
     backgroundColor: "#fff",
   },
-  header: {},
-  body: {},
+  header: {
+    gap: 10,
+  },
+  body: {
+    gap: 10,
+  },
   footer: {
     flexDirection: "row",
     gap: 15,
