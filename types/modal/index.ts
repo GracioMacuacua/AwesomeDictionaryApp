@@ -1,8 +1,6 @@
 import { ModalProps, TextProps, TouchableOpacityProps } from "react-native";
 
-export interface CustomModalProp extends ModalProps {
-  variant?: "a" | "b";
-}
+export interface CustomModalProps extends ModalProps {}
 
 export interface ModalTextProps extends TextProps {
   variant?: "light" | "dark";

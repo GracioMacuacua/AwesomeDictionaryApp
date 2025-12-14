@@ -1,5 +1,5 @@
 import {
-  CustomModalProp,
+  CustomModalProps,
   ModalButtonProps,
   ModalTextProps,
 } from "@/types/modal";
@@ -12,19 +12,29 @@ import {
   ViewProps,
   ImageProps,
   TouchableOpacity,
+  GestureResponderEvent,
+  Pressable,
 } from "react-native";
 import React, { useMemo } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useDimensions } from "@/hooks/useDimensions";
 
-const ModalComponent = React.memo<CustomModalProp>((props) => {
-  const { children, variant, ...otherProps } = props;
+const ModalComponent = React.memo<CustomModalProps>((props) => {
+  const { children, onDismiss, ...otherProps } = props;
 
   return (
-    <Modal animationType="fade" transparent={true} {...otherProps}>
-      <View style={styles.overlay}>
-        <View style={styles.wrapper}>{children}</View>
-      </View>
+    <Modal animationType="slide" transparent={true} {...otherProps}>
+      <Pressable
+        style={styles.overlay}
+        onPress={onDismiss}
+      >
+        <Pressable
+          style={styles.wrapper}
+          onPress={e => e.stopPropagation()}
+        >
+          {children}
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 });
