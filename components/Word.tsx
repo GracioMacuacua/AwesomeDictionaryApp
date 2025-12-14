@@ -7,7 +7,7 @@ const Word = React.memo((data: WordProps) => {
   const [pressed, setPressed] = useState(false);
 
   return (
-    <Pressable style={styles.botao}>
+    <Pressable style={styles.button}>
       <Link
         href={{
           pathname: "/meaning",
@@ -28,7 +28,7 @@ const Word = React.memo((data: WordProps) => {
 });
 
 const styles = StyleSheet.create({
-  botao: {
+  button: {
     borderBottomWidth: 0.29,
     borderBottomColor: "#E3DFE3",
     paddingVertical: 5,
