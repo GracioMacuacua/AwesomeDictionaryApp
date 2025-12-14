@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text, Switch } from "react-native";
+import { StyleSheet, View, Text, Switch, Linking, Share } from "react-native";
 import { CustomButton } from "@/components/CustomButton";
 import { Container } from "@components/Container";
+import { useSettings } from "@/hooks/useSettings";
 import { useTheme } from "@context/ThemeContext";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
@@ -9,32 +10,10 @@ import { THEMES } from "@constants/Themes";
 import { Color } from "@components/Color";
 import React, { useState } from "react";
 import { Icon } from "@components/Icon";
-import { useRouter } from "expo-router";
 
 const Settings = () => {
-  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
-  const [isEnabled, setIsEnabled] = useState(false);
-
-  const toggleSwitch = () => setIsEnabled(!isEnabled);
-
-  const buttonList = new Array(
-    {
-      icon: { name: "fa-solid fa-share-nodes" },
-      text: "Partilhar App",
-      fn: () => {},
-    },
-    {
-      icon: { name: "fa-solid fa-square-plus" },
-      text: "Mais Apps",
-      fn: () => {},
-    },
-    {
-      icon: { name: "fa-solid fa-clock-rotate-left" },
-      text: "Histórico",
-      fn: () => router.push("/history"),
-    }
-  );
+  const { buttonList, isSwitchEnabled, toggleSwitch } = useSettings();
 
   return (
     <Screen>
@@ -98,10 +77,10 @@ const Settings = () => {
             <Text>Notificações diárias desactivadas</Text>
           </View>
           <Switch
-            thumbColor={isEnabled ? theme.background : "#f4f3f4"}
+            thumbColor={isSwitchEnabled ? theme.background : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
-            value={isEnabled}
+            value={isSwitchEnabled}
             style={{ padding: 0 }}
           />
         </View>
