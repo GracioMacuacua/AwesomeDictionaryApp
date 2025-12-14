@@ -26,7 +26,7 @@ const CustomButton = ({
     >
       <Icon
         name={icon.name}
-        customStyle={{
+        style={{
           color:
             isFocused != null
               ? isFocused === true

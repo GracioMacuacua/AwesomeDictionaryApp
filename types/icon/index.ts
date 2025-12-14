@@ -2,6 +2,6 @@ import { FontAwesomeIconStyle } from "@fortawesome/react-native-fontawesome";
 
 export type IconProps = {
   name: string;
-  customStyle?: FontAwesomeIconStyle;
+  style?: FontAwesomeIconStyle;
   size?: number;
 };

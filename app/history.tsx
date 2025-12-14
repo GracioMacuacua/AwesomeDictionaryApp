@@ -53,7 +53,7 @@ const History = () => {
         <TouchableOpacity style={styles.button} onPress={handleRemoveAll}>
           <Icon
             name="fa-solid fa-trash"
-            customStyle={{ color: "#fff" }}
+            style={{ color: "#fff" }}
             size={17}
           />
         </TouchableOpacity>

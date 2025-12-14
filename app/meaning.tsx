@@ -89,19 +89,19 @@ const Meaning = () => {
           <TouchableOpacity style={styles.iconButton} onPress={handleShare}>
             <Icon
               name="fa-solid fa-share-nodes"
-              customStyle={{ color: "#fff" }}
+              style={{ color: "#fff" }}
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton} onPress={handleFavorite}>
             <Icon
               name={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart`}
-              customStyle={{ color: "#fff" }}
+              style={{ color: "#fff" }}
             />
           </TouchableOpacity>
         </View>
         <View style={styles.spacer} />
         <TouchableOpacity style={styles.iconButton} onPress={handleSpeech}>
-          <Icon name="fa-solid fa-microphone" customStyle={{ color: "#fff" }} />
+          <Icon name="fa-solid fa-microphone" style={{ color: "#fff" }} />
         </TouchableOpacity>
       </TopBar>
       <Container customStyle={{ flex: 1, flexDirection: "column" }}>

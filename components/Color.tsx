@@ -12,7 +12,7 @@ const Color = ({ color, onSelect, selected }: ColorProps) => {
       {selected === color.name && (
         <Icon
           name="fa-solid fa-check"
-          customStyle={{ color: "#fff" }}
+          style={{ color: "#fff" }}
           size={25}
         />
       )}

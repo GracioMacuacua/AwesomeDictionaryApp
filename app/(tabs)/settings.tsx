@@ -53,7 +53,7 @@ const Settings = () => {
         >
           <Icon
             name="fa-solid fa-palette"
-            customStyle={{ color: theme.background, marginRight: 10 }}
+            style={{ color: theme.background, marginRight: 10 }}
           />
           <Text style={[styles.text, { fontSize: 16 }]}>Tema</Text>
         </View>
@@ -73,7 +73,7 @@ const Settings = () => {
               key={id}
               icon={{
                 name: button.icon.name,
-                customStyle: { color: theme.background },
+                style: { color: theme.background },
               }}
               text={button.text}
               onPress={button.fn}

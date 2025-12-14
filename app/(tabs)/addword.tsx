@@ -103,7 +103,7 @@ const AddWord = () => {
             >
               <Icon
                 name="fa-solid fa-square-plus"
-                customStyle={{ color: "#fff" }}
+                style={{ color: "#fff" }}
               />
             </TouchableOpacity>
           </View>

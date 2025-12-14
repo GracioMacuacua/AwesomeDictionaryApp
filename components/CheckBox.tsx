@@ -21,7 +21,7 @@ const CheckBox = ({ state, handlePress, size }: CheckBoxProps) => {
       {state && (
         <Icon
           name="fa-solid fa-square-check"
-          customStyle={{ color: theme.background }}
+          style={{ color: theme.background }}
           size={size}
         />
       )}
