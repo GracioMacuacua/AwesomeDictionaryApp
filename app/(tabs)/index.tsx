@@ -2,6 +2,7 @@ import {
   View,
   Text,
   Alert,
+  Linking,
   TextInput,
   StyleSheet,
   BackHandler,
@@ -13,7 +14,9 @@ import { Icon } from "@components/Icon";
 import { WordProps } from "@/types/word";
 import { TopBar } from "@components/TopBar";
 import { Screen } from "@components/Screen";
+import BoyImage from "@assets/boy-image.png";
 import { useFocusEffect } from "expo-router";
+import CustomModal from "@/components/Modal";
 import { Listing } from "@components/Listing";
 import { useDatabase } from "@hooks/useDatabase";
 import { LoadingComponent } from "@components/Loading";
@@ -24,6 +27,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const inputRef = useRef<TextInput>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [words, setWords] = useState<WordProps[]>([]);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -35,23 +39,8 @@ const Home = () => {
           setShowSearchbar(false);
           setSearch("");
           return true;
-        } else {
-          Alert.alert(
-            "Sair do aplicativo",
-            "Você deseja realmente sair do aplicativo?",
-            [
-              {
-                text: "Cancelar",
-                onPress: () => null,
-                style: "cancel",
-              },
-              {
-                text: "Sair",
-                onPress: () => BackHandler.exitApp(),
-                style: "destructive",
-              },
-            ]
-          );
+        } else if (!showModal) {
+          toggleShowModal();
           return true;
         }
       };
@@ -115,7 +104,7 @@ const Home = () => {
   useEffect(() => {
     debounceSearch(search);
     return () => {
-      debounceSearch.cancel(); // limpa o timer anterior
+      debounceSearch.cancel();
     };
   }, [search]);
 
@@ -125,9 +114,9 @@ const Home = () => {
     );
   }, [debouncedSearch, words]);
 
-  const openSearchbar = useCallback(() => {
+  const openSearchbar = () => {
     setShowSearchbar((prev) => !prev);
-  }, []);
+  };
 
   const debounceSearch = useMemo(() => {
     return debounce((value) => {
@@ -135,9 +124,28 @@ const Home = () => {
     }, 500);
   }, [search]);
 
-  const clearSearch = useCallback(() => {
+  const clearSearch = () => {
     setSearch("");
-  }, []);
+  };
+
+  const toggleShowModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
+  const handleExit = () => {
+    toggleShowModal();
+    BackHandler.exitApp();
+  };
+
+  const handleRateApp = async () => {
+    let url = "https://example.com/rate-us";
+    let suported = await Linking.canOpenURL(url);
+
+    if (suported) {
+      toggleShowModal();
+      await Linking.openURL(url);
+    }
+  };
 
   return (
     <Screen>
@@ -149,7 +157,7 @@ const Home = () => {
             <TouchableOpacity style={styles.button} onPress={openSearchbar}>
               <Icon
                 name="fa-solid fa-magnifying-glass"
-                customStyle={{ color: "#fff" }}
+                style={{ color: "#fff" }}
                 size={17}
               />
             </TouchableOpacity>
@@ -159,7 +167,7 @@ const Home = () => {
             <TouchableOpacity style={styles.button} onPress={openSearchbar}>
               <Icon
                 name="fa-solid fa-arrow-left"
-                customStyle={{ color: "#fff" }}
+                style={{ color: "#fff" }}
                 size={17}
               />
             </TouchableOpacity>
@@ -175,7 +183,7 @@ const Home = () => {
               {search.length > 0 ? (
                 <Icon
                   name="fa-solid fa-x"
-                  customStyle={{ color: "#fff" }}
+                  style={{ color: "#fff" }}
                   size={17}
                 />
               ) : null}
@@ -188,6 +196,46 @@ const Home = () => {
       ) : (
         <Listing data={filteredWords ?? []} />
       )}
+
+      <CustomModal visible={showModal} onDismiss={toggleShowModal}>
+        <CustomModal.Header>
+          <CustomModal.Image source={BoyImage} />
+        </CustomModal.Header>
+        <CustomModal.Body>
+          <CustomModal.Text>
+            Se você gostou do aplicativo, por favor, considere avaliá-lo com 5
+            estrelas. Isso nos encorajará a continuar o melhorando!
+          </CustomModal.Text>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: 8,
+            }}
+          >
+            {Array(5)
+              .fill(null)
+              .map((_, i) => (
+                <Icon
+                  key={i}
+                  name="fa-solid fa-star"
+                  style={styles.modalIcon}
+                  size={24}
+                />
+              ))}
+          </View>
+        </CustomModal.Body>
+        <CustomModal.Footer>
+          <CustomModal.Button variant="primary" onPress={handleExit}>
+            <CustomModal.Text>Sair</CustomModal.Text>
+          </CustomModal.Button>
+
+          <CustomModal.Button variant="primary" filled onPress={handleRateApp}>
+            <CustomModal.Text variant="light">Avaliar</CustomModal.Text>
+          </CustomModal.Button>
+        </CustomModal.Footer>
+      </CustomModal>
     </Screen>
   );
 };
@@ -216,5 +264,8 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalIcon: {
+    color: "#FFD700",
   },
 });
