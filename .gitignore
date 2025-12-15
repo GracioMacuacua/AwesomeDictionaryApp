@@ -39,3 +39,4 @@ test
 app.json
 .github
 *-lock.json
+*.lock
